@@ -1,0 +1,22 @@
+App\Entity\Ingredient:
+    type: entity
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        name:
+            type: string
+            length: 50
+
+        description:
+            type: text
+            nullable: true
+
+    manyToMany:
+        recipes:
+            targetEntity: Recipe
+            inversedBy: ingredients
