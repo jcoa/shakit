@@ -48,5 +48,9 @@
 /.web-server-pid
 
 # API Platform
-/public/bundles/apiplatform/
+/public/bundles/
 
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
