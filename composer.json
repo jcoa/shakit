@@ -63,6 +63,7 @@
     },
     "require-dev": {
         "api-platform/schema-generator": "^2.1",
-        "codeception/codeception": "^2.5"
+        "codeception/codeception": "^2.5",
+        "symfony/web-server-bundle": "4.2.*"
     }
 }
