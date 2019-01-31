@@ -4,10 +4,7 @@ language: php
 sudo: false
 
 php:
- - 7.0
- - 7.1
  - 7.2
- - 7.3
 
 # Start mysql service
 services:
@@ -18,20 +15,19 @@ services:
 cache:
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/symfony-bridge/.phpunit
-
+    - ./bin/.phpunit
 env:
   global:
-    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
-    - SYMFONY_VERSION="4.2.*" DB=sql
-    - SYMFONY_VERSION="dev-master" DB=mysql
+    - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
+    - SYMFONY_DEPRECATIONS_HELPER=29
+    - SYMFONY_VERSION="4.2.*" DB=postgresql
 
 # Matrix to test in every php version
 matrix:
   # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
   fast_finish: true
   include:
-    - php: 7.3
+    - php: 7.2
     - php: nightly
   allow_failures:
     - php: nightly
@@ -40,23 +36,22 @@ addons:
   postgresql: "9.5"
 
 before_install:
-  - timedatectl set-timezone Europe/London
-  - chmod +x bin/behat
-  - composer self-update
-  - rm -rf var/cache/*
-
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || phpenv config-rm xdebug.ini'
   - composer self-update
+  # - timedatectl set-timezone Europe/Paris
+  - chmod +x bin/behat
+  - rm -rf var/cache/*
+
 
 install:
   - composer install
   - cp app/config/parameters_travis.yml.dist app/config/parameters.yml
   - rm -rf var/cache/*
-  - travis_retry php bin/console doctrine:database:create --env=test
-  - openssl genrsa -passout pass:passphrase -out var/jwt/private.pem -aes256 4096
-  - openssl rsa -passin pass:passphrase -pubout -in var/jwt/private.pem -out var/jwt/public.pem
+  # - travis_retry php bin/console doctrine:database:create --env=test
+  # - openssl genrsa -passout pass:passphrase -out var/jwt/private.pem -aes256 4096
+  # - openssl rsa -passin pass:passphrase -pubout -in var/jwt/private.pem -out var/jwt/public.pem
 
-  - ./vendor/bin/phpunit install
+  - ./bin/phpunit install
 # Commands to be run before your environment runs.
 
 before_script:
@@ -65,9 +60,7 @@ before_script:
 # Run script
 script:
   # - vendor/behat/behat/bin/behat -vv
-
-
-  - ./vendor/bin/phpunit
+  - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
