@@ -43,7 +43,6 @@ before_install:
 
 install:
   - composer install
-  - cp app/config/parameters_travis.yml.dist app/config/parameters.yml
   - rm -rf var/cache/*
   # - travis_retry php bin/console doctrine:database:create --env=test
   # - openssl genrsa -passout pass:passphrase -out var/jwt/private.pem -aes256 4096
