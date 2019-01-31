@@ -39,9 +39,7 @@ before_install:
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || phpenv config-rm xdebug.ini'
   - composer self-update
   # - timedatectl set-timezone Europe/Paris
-  - chmod +x bin/behat
   - rm -rf var/cache/*
-
 
 install:
   - composer install
@@ -59,7 +57,7 @@ before_script:
 
 # Run script
 script:
-  # - vendor/behat/behat/bin/behat -vv
+  # - vendor/bin/behat -v
   - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
