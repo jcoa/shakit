@@ -48,7 +48,7 @@ install:
   # - openssl genrsa -passout pass:passphrase -out var/jwt/private.pem -aes256 4096
   # - openssl rsa -passin pass:passphrase -pubout -in var/jwt/private.pem -out var/jwt/public.pem
 
-  - ./bin/phpunit install
+  - ./vendor/bin/phpunit install
 # Commands to be run before your environment runs.
 
 before_script:
@@ -57,7 +57,7 @@ before_script:
 # Run script
 script:
   # - vendor/bin/behat -v
-  - ./bin/phpunit
+  - ./vendor/bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
