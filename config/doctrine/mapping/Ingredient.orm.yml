@@ -18,5 +18,5 @@ App\Entity\Ingredient:
 
     manyToMany:
         recipes:
-            targetEntity: Recipe
-            inversedBy: ingredients
+            targetEntity: App\Entity\Recipe
+            mappedBy: ingredients

@@ -11,11 +11,12 @@ App\Entity\Recipe:
         name:
             type: string
             length: 50
+
         description:
             type: text
             nullable: true
 
     manyToMany:
         ingredients:
-            targetEntity: Ingredient
+            targetEntity: App\Entity\Ingredient
             inversedBy: recipes
