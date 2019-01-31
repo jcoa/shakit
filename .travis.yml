@@ -47,8 +47,7 @@ install:
   # - travis_retry php bin/console doctrine:database:create --env=test
   # - openssl genrsa -passout pass:passphrase -out var/jwt/private.pem -aes256 4096
   # - openssl rsa -passin pass:passphrase -pubout -in var/jwt/private.pem -out var/jwt/public.pem
-
-  - ./vendor/bin/phpunit install
+  # - ./vendor/bin/phpunit install
 # Commands to be run before your environment runs.
 
 before_script:
