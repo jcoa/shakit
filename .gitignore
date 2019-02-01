@@ -51,7 +51,10 @@
 /public/bundles/
 
 .phpintel/*
-*.sublime*
+
+shakit.sublime-project
+shakit.sublime-workspace
+
 
 ###> symfony/web-server-bundle ###
 /.web-server-pid
