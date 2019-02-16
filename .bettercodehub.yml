@@ -1,0 +1,11 @@
+component_depth: 1
+languages:
+- php
+
+exclude:
+- /bin/.*
+- /conf/.*
+- /public/.*
+- /vendor/.*
+- /var/.*
+- /src/Kernel.php
